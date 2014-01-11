@@ -9,6 +9,7 @@ describe('Controller: MainCtrl', function () {
     scope;
 
   var teams = ['kitty', 'vanz', 'pikaju'];
+  var teamList = ['A','B','C']
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
@@ -20,6 +21,7 @@ describe('Controller: MainCtrl', function () {
 
   beforeEach(function() {
     scope.teams = teams;
+    scope.team1List = [];
   });
 
   describe('Teams', function() {
@@ -32,6 +34,16 @@ describe('Controller: MainCtrl', function () {
       scope.team1 = scope.teams[0];
       scope.updateTeam1PlayerList();
       expect(scope.team1List.length).toBe(3);
+    });
+
+    it('team1List should have 3 players: "A", "B", "C" when choose "kitty" team', function() {
+      expect(scope.team1List.length).toBe(0);
+      scope.team1 = scope.teams[0];
+      scope.updateTeam1PlayerList();
+      expect(scope.team1List.length).toBe(3);
+      expect(scope.team1List[0]).toBe('A');
+      expect(scope.team1List[1]).toBe('B');
+      expect(scope.team1List[2]).toBe('C');
     });
   });
 });
