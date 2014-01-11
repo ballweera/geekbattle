@@ -41,6 +41,7 @@ angular.module('geekBattleApp')
     $scope.updateTeam1PlayerList = function(){
     	$scope.team1List = ['A','B','C'];
 
+
     	if($scope.team1.team == 'kitty') {
     		$scope.selectedTeam1Member = $scope.allTeamsPlayerList[0].detail;
     	} else if ($scope.team1.team == 'pikaju') {
@@ -49,6 +50,7 @@ angular.module('geekBattleApp')
 			$scope.selectedTeam1Member = $scope.allTeamsPlayerList[2].detail;
     	} else {
     		$scope.selectedTeam1Member = [];
+    		$scope.team1Player = [];
     	}
     };
 
@@ -62,7 +64,8 @@ angular.module('geekBattleApp')
     	} else if ($scope.team2.team == 'vanz') {
 			$scope.selectedTeam2Member = $scope.allTeamsPlayerList[2].detail;
     	} else {
-    		$scope.selectedTeam1Member = [];
+    		$scope.selectedTeam2Member = [];
+    		$scope.team2Player = [];
     	}
     };
 
