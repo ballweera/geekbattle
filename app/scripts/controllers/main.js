@@ -10,4 +10,8 @@ angular.module('geekBattleApp')
     	$scope.team1List = ['A','B','C'];
     };
 
+    $scope.updateTeam2PlayerList = function(){
+    	$scope.team2List = ['AA','BB','CC'];
+    };
+
   });
