@@ -7,4 +7,12 @@ angular.module('geekBattleApp')
       'AngularJS',
       'Karma'
     ];
+
+    $scope.teams = ['kitty', 'vanz', 'pikaju'];
+    $scope.team1List = [];
+
+    $scope.updateTeam1PlayerList = function(){
+    	$scope.team1List = ['','',''];
+    };
+
   });

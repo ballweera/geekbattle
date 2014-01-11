@@ -28,8 +28,9 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('team1List should have 3 players in team1List list when choose "kitty" team', function() {
+      expect(scope.team1List.length).toBe(0);
       scope.team1 = scope.teams[0];
-      updatePlayerList();
+      scope.updateTeam1PlayerList();
       expect(scope.team1List.length).toBe(3);
     });
   });
