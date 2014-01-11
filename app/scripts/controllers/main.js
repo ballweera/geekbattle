@@ -4,6 +4,8 @@ angular.module('geekBattleApp')
 
   .controller('MainCtrl', function ($scope,JsonReader,$http) {
 
+	$scope.isBattleStarted = false;
+
     $scope.teams = [];
     $scope.team1List = [];
     $scope.allTeamsPlayerList = [];
@@ -13,15 +15,15 @@ angular.module('geekBattleApp')
     $scope.team2;
 
 	$scope.initData = function(){
-		$scope.teams.push({
-      			"team":"select team",
-      			"detail":[]
-		   	});
-		$scope.team1 = $scope.teams[0];
-		$scope.team2 = $scope.teams[0];
+
+		$scope.isBattleStarted = false;
+		resetTeams();
 	};
 
 	$scope.startBattle = function(){
+
+		$scope.isBattleStarted = true;
+
 		$scope.teams = [];
 		var promise = JsonReader.getPlayerData();
 		promise.then(function(response){
@@ -36,6 +38,13 @@ angular.module('geekBattleApp')
 			$scope.team1 = $scope.teams[0];
 			$scope.team2 = $scope.teams[0];
 		});
+	};
+
+	$scope.endBattle = function(){
+		$scope.isBattleStarted = false;
+		resetTeams();
+		resetTeam1Players();
+		resetTeam2Players();
 	};
 
     $scope.updateTeam1PlayerList = function(){
@@ -64,6 +73,24 @@ angular.module('geekBattleApp')
     	} else {
     		$scope.selectedTeam1Member = [];
     	}
+    };
+
+    var resetTeams = function() {
+    	$scope.teams = [];
+    	$scope.teams.push({
+      			"team":"select team",
+      			"detail":[]
+		   	});
+		$scope.team1 = $scope.teams[0];
+		$scope.team2 = $scope.teams[0];
+    };
+
+    var resetTeam1Players = function() {
+    	$scope.selectedTeam1Member = [];
+    };
+
+    var resetTeam2Players = function() {
+    	$scope.selectedTeam2Member = [];
     };
 
  	// $scope.team1Change = function() {

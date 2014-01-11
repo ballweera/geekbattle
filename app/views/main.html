@@ -27,11 +27,17 @@
           </div>
         </div>
         <div class="col-md-12 controlstate-wrapper clear">
-          <div class="buttonstate" ng-click="startBattle()" disabled>Start Battle</div>
+          <div ng-switch on="isBattleStarted"> 
+            <div ng-switch-when="false">
+              <button type="button" class="btn btn-success" ng-click="startBattle()" >Start Battle</button>
+            </div>
+            <div ng-switch-when="true">
+              <button type="button" class="btn btn-danger" ng-click="endBattle()">End Battle</button>
+            </div>
+         </div>
           <div class="buttonstate">Start Match</div>
           <div class="buttonstate">Start Round</div>
           <div class="buttonstate">End Round</div>
-          <div class="buttonstate">End Battle</div>
         </div>
         <br class="clear"/>
         <h3>Score Board</h3>
