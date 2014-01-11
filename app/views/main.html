@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-init="initData()">
   <div class="col-md-12">
     <div class="col-md-9">
         <h1>Player Board</h1>
@@ -7,17 +7,11 @@
           <img ng-src="images/judge.jpg">
           <div class="team_select_wrapper">
           <label>Select Team</label>
-            <select>
-              <option value="husker">Kitty</option>
-              <option value="starbuck">Pikaju</option>
-              <option value="apollo">vanz</option>
-            </select>
-            <label>Select Player</label>
-            <select>
-              <option value="husker">Husker</option>
-              <option value="starbuck">Starbuck</option>
-              <option value="apollo">Apollo</option>
-            </select>
+          <select ng-change="updateTeam1PlayerList()" ng-model="team1" ng-options="team.team for team in teams"></select>
+          <label>Select Player</label>
+          <select ng-model="team1Player" ng-options="member.player_name for member in selectedTeam1Member">
+            <option value="">select player</option>
+          </select>
           </div>
         </div>
         <div class="col-md-6">
@@ -25,18 +19,19 @@
           <img ng-src="images/judge.jpg">
           <div class="team_select_wrapper">
           <label>Select Team</label>
-            <select>
-              <option value="husker">Kitty</option>
-              <option value="starbuck">Pikaju</option>
-              <option value="apollo">vanz</option>
-            </select>
-            <label>Select Player</label>
-            <select>
-              <option value="husker">Kanokon</option>
-              <option value="starbuck">Weerasak</option>
-              <option value="apollo">Lula</option>
-            </select>
+          <select ng-change="updateTeam2PlayerList()" ng-model="team2" ng-options="team.team for team in teams"></select>
+          <label>Select Player</label>
+          <select ng-model="team2Player" ng-options="member.player_name for member in selectedTeam2Member">
+            <option value="">select player</option>
+          </select>
           </div>
+        </div>
+        <div class="col-md-12 controlstate-wrapper clear">
+          <div class="buttonstate" ng-click="startBattle()">Start Battle</div>
+          <div class="buttonstate">Start Match</div>
+          <div class="buttonstate">Start Round</div>
+          <div class="buttonstate">End Round</div>
+          <div class="buttonstate">End Battle</div>
         </div>
         <br class="clear"/>
         <h3>Score Board</h3>
@@ -47,12 +42,6 @@
           </div>
         </div>
         <br class="clear"/>
-        <div class="col-md-12 controlstate-wrapper clear">
-          <div class="buttonstate">Start Battle</div>
-          <div class="buttonstate">Start Match</div>
-          <div class="buttonstate">Start Round</div>
-          <div class="buttonstate">Finish Round</div>
-        </div>
     </div>
     <div class="col-md-3">
         <h1>Judges</h1>

@@ -1,9 +1,13 @@
 'use strict';
 
 angular.module('geekBattleApp')
-	.factory('JsonReader', function() {
+	.factory('JsonReader', function($http) {
 		var getPlayerData = function(){
-			return 1;
+
+			return $http.get('scripts/data/user.json').success(function(response) {
+		    	return response;
+		 	});
+
 		};
   		return {
   			getPlayerData : getPlayerData
