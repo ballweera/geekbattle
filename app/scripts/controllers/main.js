@@ -13,6 +13,16 @@ angular.module('geekBattleApp')
     $scope.team2;
 
 	$scope.initData = function(){
+		$scope.teams.push({
+      			"team":"select team",
+      			"detail":[]
+		   	});
+		$scope.team1 = $scope.teams[0];
+		$scope.team2 = $scope.teams[0];
+	};
+
+	$scope.startBattle = function(){
+		$scope.teams = [];
 		var promise = JsonReader.getPlayerData();
 		promise.then(function(response){
 			$scope.allTeamsPlayerList = response.data;
@@ -26,10 +36,6 @@ angular.module('geekBattleApp')
 			$scope.team1 = $scope.teams[0];
 			$scope.team2 = $scope.teams[0];
 		});
-	};
-
-	$scope.startBattle = function(){
-		
 	};
 
     $scope.updateTeam1PlayerList = function(){
