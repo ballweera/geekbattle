@@ -1,36 +1,51 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">GeekBattle</h3>
-</div>
-
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
-
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-9">
+        <h1>Player Board</h1>
+        <div class="col-md-6">
+          <h5>Player 1</h5>
+          <img ng-src="images/judge.jpg">
+          <label>Select Team</label>
+            <select>
+              <option value="husker">Kitty</option>
+              <option value="starbuck">Pikaju</option>
+              <option value="apollo">vanz</option>
+            </select>
+            <label>Select Player</label>
+            <select>
+              <option value="husker">Husker</option>
+              <option value="starbuck">Starbuck</option>
+              <option value="apollo">Apollo</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+          <h5>Player 2</h5>
+          <img ng-src="images/judge.jpg">
+          <label>Select Team</label>
+            <select>
+              <option value="husker">Kitty</option>
+              <option value="starbuck">Pikaju</option>
+              <option value="apollo">vanz</option>
+            </select>
+            <label>Select Player</label>
+            <select>
+              <option value="husker">Kanokon</option>
+              <option value="starbuck">Weerasak</option>
+              <option value="apollo">Lula</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <h1>Judges</h1>
+        <img ng-src="images/judge1.jpg">
+        <input type="radio" name="judge1" value="Red" id="pokemonRed"><label for="pokemonRed">Player 1</label>
+        <input type="radio" name="judge1" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Player 2</label>
+        <img src="images/judge2.jpg">
+        <input type="radio" name="judge2" value="Red" id="pokemonRed"><label for="pokemonRed">Player 1</label>
+        <input type="radio" name="judge2" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Player 2</label>
+        <img src="images/judge3.jpg">
+        <input type="radio" name="judge3" value="Red" id="pokemonRed"><label for="pokemonRed">Player 1</label>
+        <input type="radio" name="judge3" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Player 2</label>
+    </div>
+  </div>
 </div>
