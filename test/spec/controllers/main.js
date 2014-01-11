@@ -8,6 +8,8 @@ describe('Controller: MainCtrl', function () {
   var MainCtrl,
     scope;
 
+  var teams = ['kitty', 'vanz', 'pikaju'];
+
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
@@ -16,7 +18,19 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  beforeEach(function() {
+    scope.teams = teams;
+  });
+
+  describe('Teams', function() {
+    it('should have 3 teams in teams list', function() {
+      expect(scope.teams.length).toBe(3);
+    });
+
+    it('team1List should have 3 players in team1List list when choose "kitty" team', function() {
+      scope.team1 = scope.teams[0];
+      updatePlayerList();
+      expect(scope.team1List.length).toBe(3);
+    });
   });
 });
