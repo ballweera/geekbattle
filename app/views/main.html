@@ -4,7 +4,7 @@
         <h1>Player Board</h1>
         <div class="col-md-6">
           <h5>Player 1</h5>
-          <img ng-model="team1PlayerPicture" ng-src={{team1PlayerPicture}}>
+          <img ng-model="team1PlayerPicture" ng-src={{team1PlayerPicture}} class="img-thumbnail" width="140" height=140>
           <div class="team_select_wrapper">
           <label>Select Team</label>
           <select ng-change="updateTeam1PlayerList()" ng-model="team1" ng-options="team.team for team in teams"></select>
@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-6">
           <h5>Player 2</h5>
-          <img ng-model="team2PlayerPicture" ng-src={{team2PlayerPicture}}>
+          <img ng-model="team2PlayerPicture" ng-src={{team2PlayerPicture}} class="img-thumbnail" width="140" height=140>
           <div class="team_select_wrapper">
           <label>Select Team</label>
           <select ng-change="updateTeam2PlayerList()" ng-model="team2" ng-options="team.team for team in teams"></select>
