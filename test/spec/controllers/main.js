@@ -72,4 +72,27 @@ describe('Controller: MainCtrl', function () {
       expect(scope.team2List[2]).toBe("CC");
     });
   });
+
+  describe('judge1SelectedPlayer', function() {
+    it('should be 1 when judge1 select player1 as a winner', function() {
+      scope.judge1SelectedPlayer = 1
+      expect(scope.judge1SelectedPlayer).toBe(1);
+    });
+
+    it('should be 2 when judge1 select player2 as a winner', function() {
+      scope.judge1SelectedPlayer = 2
+      expect(scope.judge1SelectedPlayer).toBe(2);
+    });
+  });
+
+  describe('battleLog', function() {
+    it('should have "Judge1 has selected player1 as a winner" at latest item when judge 1 select player1 as a winner', function() {
+      scope.judge1SelectedPlayer = 1
+      var createdAt = new Date();
+      var message = "Judge1 has selected player1 as a winner";
+      scope.appendBattleLog(createdAt, message);
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Judge1 has selected player1 as a winner");
+    });
+  });
 });

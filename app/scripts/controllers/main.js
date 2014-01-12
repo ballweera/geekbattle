@@ -13,11 +13,14 @@ angular.module('geekBattleApp')
     $scope.team1;
     $scope.selectedTeam2Member = [];
     $scope.team2;
+    $scope.battleLog = []
+    $scope.battleLogText = "";
 
 	$scope.initData = function(){
 
 		$scope.isBattleStarted = false;
 		resetTeams();
+        $scope.battleLog = [];
 	};
 
 	$scope.startBattle = function(){
@@ -78,6 +81,17 @@ angular.module('geekBattleApp')
     	}
     };
 
+    $scope.appendBattleLog = function(createdAt, message) {
+        var log = {
+            createdAt: createdAt,
+            message: message
+        };
+
+        $scope.battleLog.push(log);
+        var logText = '[' + log.createdAt.toLocaleString() + '] - ' + message + '\n';
+        $scope.battleLogText += logText;
+    };
+
     var resetTeams = function() {
     	$scope.teams = [];
     	$scope.teams.push({
@@ -99,7 +113,7 @@ angular.module('geekBattleApp')
  	// $scope.team1Change = function() {
  	// 	debugger;
  	// 	if($scope.team1 = "kitty") {
- 			
+
  	// 		// $scope.team1Player1 = $scope.jsonData[0].detail[0].player_name;
  	// 		// $scope.team1Player2 = $scope.jsonData[0].detail[1].player_name;
  	// 		// $scope.team1Player3 = $scope.jsonData[0].detail[2].player_name;
@@ -118,7 +132,7 @@ angular.module('geekBattleApp')
  	// 	// 	$scope.team1Player3 = $scope.jsonData[2].detail[2].player_name;
  	// 	// }
  	// };
-    
+
 
   });
 

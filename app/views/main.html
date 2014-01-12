@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="col-md-12 controlstate-wrapper clear">
-          <div ng-switch on="isBattleStarted"> 
+          <div ng-switch on="isBattleStarted">
             <div ng-switch-when="false">
               <button type="button" class="btn btn-success" ng-click="startBattle()" >Start Battle</button>
             </div>
@@ -42,24 +42,32 @@
         <br class="clear"/>
         <h3>Score Board</h3>
         <div class="col-md-12 scoreboard clear">
-          <div class="logscrore left">
+          <div class="row">
+            <div class="col-md-6">
+              <textarea class="form-control" rows="15">{{battleLogText}}</textarea>
+            </div>
+            <div class="col-md-6">
+              <div class="logscoretotal left"></div>
+            </div>
+          </div>
+          <!-- <div class="logscrore left">
           </div>
           <div class="logscoretotal left">
-          </div>
+          </div> -->
         </div>
         <br class="clear"/>
     </div>
     <div class="col-md-3">
         <h1>Judges</h1>
         <img ng-src="images/judge1.jpg">
-        <input type="radio" name="judge1" value="Red" id="pokemonRed"><label for="pokemonRed"> Player 1</label>
-        <input type="radio" name="judge1" value="Blue" id="pokemonBlue"><label for="pokemonBlue"> Player 2</label>
+        <input type="radio" name="judge1" value="1" id="pokemonRed" ng-model="judge1SelectedPlayer" ng-change="judgeSelectWinner('judge1')"><label for="pokemonRed"> Player 1</label>
+        <input type="radio" name="judge1" value="2" id="pokemonBlue" ng-model="judge1SelectedPlayer"><label for="pokemonBlue"> Player 2</label>
         <img src="images/judge2.jpg">
-        <input type="radio" name="judge2" value="Red" id="pokemonRed"><label for="pokemonRed"> Player 1</label>
-        <input type="radio" name="judge2" value="Blue" id="pokemonBlue"><label for="pokemonBlue"> Player 2</label>
+        <input type="radio" name="judge2" value="1" id="pokemonRed" ng-model="judge2SelectedPlayer"><label for="pokemonRed"> Player 1</label>
+        <input type="radio" name="judge2" value="2" id="pokemonBlue" ng-model="judge2SelectedPlayer"><label for="pokemonBlue"> Player 2</label>
         <img src="images/judge3.jpg">
-        <input type="radio" name="judge3" value="Red" id="pokemonRed"><label for="pokemonRed"> Player 1</label>
-        <input type="radio" name="judge3" value="Blue" id="pokemonBlue"><label for="pokemonBlue"> Player 2</label>
+        <input type="radio" name="judge3" value="1" id="pokemonRed" ng-model="judge3SelectedPlayer"><label for="pokemonRed"> Player 1</label>
+        <input type="radio" name="judge3" value="2" id="pokemonBlue" ng-model="judge3SelectedPlayer"><label for="pokemonBlue"> Player 2</label>
     </div>
   </div>
 </div>
