@@ -13,6 +13,7 @@ angular.module('geekBattleApp')
     $scope.team1;
     $scope.selectedTeam2Member = [];
     $scope.team2;
+		$scope.defaultImage = 'images/judge.jpg';
 
 	$scope.initData = function(){
 
@@ -49,7 +50,8 @@ angular.module('geekBattleApp')
 
     $scope.updateTeam1PlayerList = function(){
     	$scope.team1List = ['A','B','C'];
-
+					
+			$scope.team1PlayerPicture = $scope.defaultImage;
     	if($scope.team1.team == 'kitty') {
     		$scope.selectedTeam1Member = $scope.allTeamsPlayerList[0].detail;
     	} else if ($scope.team1.team == 'pikaju') {
@@ -58,27 +60,36 @@ angular.module('geekBattleApp')
 				$scope.selectedTeam1Member = $scope.allTeamsPlayerList[2].detail;
     	} else {
     		$scope.selectedTeam1Member = [];
-    		$scope.team1Player = [];
-    	}
+    		$scope.team1Player = [];    
+			}
     };
 		
 		$scope.updateTeam1PlayerPicture = function() {
-			$scope.team1PlayerPicture = $scope.team1Player.image;
+			if ($scope.team1Player == null) {
+				$scope.team1PlayerPicture = $scope.defaultImage;
+			} else {
+				$scope.team1PlayerPicture = $scope.team1Player.image;
+			}
 		}
 		
 		$scope.updateTeam2PlayerPicture = function() {
-			$scope.team2PlayerPicture = $scope.team2Player.image;
+			if ($scope.team2Player == null) {
+				$scope.team2PlayerPicture = $scope.defaultImage;
+			} else {
+				$scope.team2PlayerPicture = $scope.team2Player.image;
+			}
 		}
 
     $scope.updateTeam2PlayerList = function(){
     	$scope.team2List = ['AA','BB','CC'];
-
-    	if($scope.team2.team == 'kitty') {
+			
+			$scope.team2PlayerPicture = $scope.defaultImage;
+	    if($scope.team2.team == 'kitty') {
     		$scope.selectedTeam2Member = $scope.allTeamsPlayerList[0].detail;
     	} else if ($scope.team2.team == 'pikaju') {
-			$scope.selectedTeam2Member = $scope.allTeamsPlayerList[1].detail;
+				$scope.selectedTeam2Member = $scope.allTeamsPlayerList[1].detail;
     	} else if ($scope.team2.team == 'vanz') {
-			$scope.selectedTeam2Member = $scope.allTeamsPlayerList[2].detail;
+				$scope.selectedTeam2Member = $scope.allTeamsPlayerList[2].detail;
     	} else {
     		$scope.selectedTeam2Member = [];
     		$scope.team2Player = [];
