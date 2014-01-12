@@ -9,6 +9,7 @@ describe('Controller: MainCtrl', function () {
     scope;
 
   var teams = ['kitty', 'vanz', 'pikaju'];
+	var defaultImagePath = 'images/judge.jpg';
 	var tua = { 'player_name': 'Tua', 'image':'images/player/tua.jpg' };
 	var dol = { 'player_name': 'Dol', 'image':'images/player/dol.jpg' };
   // var teamList = ['A','B','C'];
@@ -48,6 +49,18 @@ describe('Controller: MainCtrl', function () {
       expect(scope.team1List[1]).toBe('B');
       expect(scope.team1List[2]).toBe('C');
     });
+
+		it('should have default image when select new team1', function() {
+      scope.team1 = scope.teams[0];
+			scope.updateTeam1PlayerList();
+			expect(scope.team1PlayerPicture).toBe(defaultImagePath);
+		});
+
+		it('should have default image when select new team2', function() {
+      scope.team2 = scope.teams[1];
+			scope.updateTeam2PlayerList();
+			expect(scope.team2PlayerPicture).toBe(defaultImagePath);
+		});
   });
 
   describe('TeamPlayerList', function() {
@@ -73,6 +86,13 @@ describe('Controller: MainCtrl', function () {
       expect(scope.team2List[1]).toBe('BB');
       expect(scope.team2List[2]).toBe('CC');
     });
+
+		it('should have default image when select a blank team member', function() {
+			scope.team1PlayerPicture = tua.image;
+			scope.team1Player = null;
+			scope.updateTeam1PlayerPicture();
+			expect(scope.team1PlayerPicture).toBe(defaultImagePath);
+		});
   });
 
   describe('judge1SelectedPlayer', function() {
