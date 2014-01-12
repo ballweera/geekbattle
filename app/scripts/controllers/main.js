@@ -21,6 +21,7 @@ angular.module('geekBattleApp')
 	$scope.scoreOfTeam1 = 0;
 	$scope.scoreOfTeam2 = 0;
 	$scope.scoreOfTeam3 = 0;
+	$scope.battleLogText = '';
 	
 	$scope.initData = function(){
 		$scope.isBattleStarted = false;
@@ -32,6 +33,7 @@ angular.module('geekBattleApp')
 		$scope.scoreOfTeam1 = 0;
 		$scope.scoreOfTeam2 = 0;
 		$scope.scoreOfTeam3 = 0;
+		$scope.battleLogText = '';
 	};
 
 	$scope.startBattle = function(){
