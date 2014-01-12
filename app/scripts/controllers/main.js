@@ -53,18 +53,25 @@ angular.module('geekBattleApp')
     $scope.updateTeam1PlayerList = function(){
     	$scope.team1List = ['A','B','C'];
 
-
     	if($scope.team1.team == 'kitty') {
     		$scope.selectedTeam1Member = $scope.allTeamsPlayerList[0].detail;
     	} else if ($scope.team1.team == 'pikaju') {
-			$scope.selectedTeam1Member = $scope.allTeamsPlayerList[1].detail;
+				$scope.selectedTeam1Member = $scope.allTeamsPlayerList[1].detail;
     	} else if ($scope.team1.team == 'vanz') {
-			$scope.selectedTeam1Member = $scope.allTeamsPlayerList[2].detail;
+				$scope.selectedTeam1Member = $scope.allTeamsPlayerList[2].detail;
     	} else {
     		$scope.selectedTeam1Member = [];
     		$scope.team1Player = [];
     	}
     };
+
+		$scope.updateTeam1PlayerPicture = function() {
+			$scope.team1PlayerPicture = $scope.team1Player.image;
+		}
+
+		$scope.updateTeam2PlayerPicture = function() {
+			$scope.team2PlayerPicture = $scope.team2Player.image;
+		}
 
     $scope.updateTeam2PlayerList = function(){
     	$scope.team2List = ['AA','BB','CC'];
@@ -96,10 +103,17 @@ angular.module('geekBattleApp')
     	$scope.teams = [];
     	$scope.teams.push({
       			"team":"select team",
-      			"detail":[]
+      			"detail":[
+		          {
+		             "player_name":"",
+		             "image":"images/judge.jpg"
+		          }
+						]
 		   	});
-		$scope.team1 = $scope.teams[0];
-		$scope.team2 = $scope.teams[0];
+			$scope.team1 = $scope.teams[0];
+			$scope.team2 = $scope.teams[0];
+			$scope.team1PlayerPicture = $scope.team1.detail[0].image;
+			$scope.team2PlayerPicture = $scope.team2.detail[0].image;
     };
 
     var resetTeam1Players = function() {
