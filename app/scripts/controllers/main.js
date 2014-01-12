@@ -13,7 +13,8 @@ angular.module('geekBattleApp')
     $scope.team1;
     $scope.selectedTeam2Member = [];
     $scope.team2;
-		$scope.defaultImage = 'images/judge.jpg';
+	$scope.defaultImage = 'images/judge.jpg';
+    $scope.battleLog = [];
 
 	$scope.initData = function(){
 
@@ -50,7 +51,7 @@ angular.module('geekBattleApp')
 
     $scope.updateTeam1PlayerList = function(){
     	$scope.team1List = ['A','B','C'];
-					
+
 			$scope.team1PlayerPicture = $scope.defaultImage;
     	if($scope.team1.team == 'kitty') {
     		$scope.selectedTeam1Member = $scope.allTeamsPlayerList[0].detail;
@@ -60,10 +61,10 @@ angular.module('geekBattleApp')
 				$scope.selectedTeam1Member = $scope.allTeamsPlayerList[2].detail;
     	} else {
     		$scope.selectedTeam1Member = [];
-    		$scope.team1Player = [];    
+    		$scope.team1Player = [];
 			}
     };
-		
+
 		$scope.updateTeam1PlayerPicture = function() {
 			if ($scope.team1Player == null) {
 				$scope.team1PlayerPicture = $scope.defaultImage;
@@ -71,7 +72,7 @@ angular.module('geekBattleApp')
 				$scope.team1PlayerPicture = $scope.team1Player.image;
 			}
 		}
-		
+
 		$scope.updateTeam2PlayerPicture = function() {
 			if ($scope.team2Player == null) {
 				$scope.team2PlayerPicture = $scope.defaultImage;
@@ -82,7 +83,7 @@ angular.module('geekBattleApp')
 
     $scope.updateTeam2PlayerList = function(){
     	$scope.team2List = ['AA','BB','CC'];
-			
+
 			$scope.team2PlayerPicture = $scope.defaultImage;
 	    if($scope.team2.team == 'kitty') {
     		$scope.selectedTeam2Member = $scope.allTeamsPlayerList[0].detail;
@@ -96,7 +97,41 @@ angular.module('geekBattleApp')
     	}
     };
 
-    var resetTeams = function() {		
+    $scope.appendBattleLog = function(createdAt, message) {
+        var log = {
+            createdAt: createdAt,
+            message: message
+        };
+
+        $scope.battleLog.push(log);
+        var logText = '[' + log.createdAt.toLocaleString() + '] - ' + message + '\n';
+        $scope.battleLogText += logText;
+    };
+
+    $scope.judgeSelectWinner = function(judgeId) {
+        var createdAt = new Date();
+        var judgeName = judgeToString(judgeId);
+        var playerName = '';
+        var message = '';
+
+        if (judgeId == 1) {
+            playerName = playerToString(parseInt($scope.judge1SelectedPlayer));
+            console.log(playerName);
+            message = judgeName + ' has selected ' + playerName + ' as a winner';
+        } else if (judgeId == 2) {
+            playerName = playerToString(parseInt($scope.judge2SelectedPlayer));
+            message = judgeName + ' has selected ' + playerName + ' as a winner';
+        } else if (judgeId == 3) {
+            playerName = playerToString(parseInt($scope.judge3SelectedPlayer));
+            message = judgeName + ' has selected ' + playerName + ' as a winner';
+        } else {
+            message = judgeName + ' has not selected a winner yet';
+        }
+
+        $scope.appendBattleLog(createdAt, message);
+    };
+
+    var resetTeams = function() {
     	$scope.teams = [];
     	$scope.teams.push({
       			"team":"select team",
@@ -124,7 +159,7 @@ angular.module('geekBattleApp')
  	// $scope.team1Change = function() {
  	// 	debugger;
  	// 	if($scope.team1 = "kitty") {
- 			
+
  	// 		// $scope.team1Player1 = $scope.jsonData[0].detail[0].player_name;
  	// 		// $scope.team1Player2 = $scope.jsonData[0].detail[1].player_name;
  	// 		// $scope.team1Player3 = $scope.jsonData[0].detail[2].player_name;
@@ -143,7 +178,44 @@ angular.module('geekBattleApp')
  	// 	// 	$scope.team1Player3 = $scope.jsonData[2].detail[2].player_name;
  	// 	// }
  	// };
-    
 
+    /*
+     *  Private Function
+    */
+
+    var judgeToString = function(judgeId) {
+        var judgeName = '';
+        switch(judgeId) {
+            case 1:
+                judgeName = 'Judge1';
+                break;
+            case 2:
+                judgeName = 'Judge2';
+                break;
+            case 3:
+                judgeName = 'Judge3';
+                break;
+            default:
+                judgeName = 'Unknown';
+        }
+
+        return judgeName;
+    }
+
+    var playerToString = function(playerId) {
+        var playerName = '';
+        switch(playerId) {
+            case 1:
+                playerName = 'player1';
+                break;
+            case 2:
+                playerName = 'player2';
+                break;
+            default:
+                playerName = 'Unknown';
+        }
+
+        return playerName;
+    }
   });
 
