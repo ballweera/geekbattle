@@ -88,13 +88,46 @@ describe('Controller: MainCtrl', function () {
   });
 
   describe('battleLog', function() {
-    it('should have "Judge1 has selected player1 as a winner" at latest item when judge 1 select player1 as a winner', function() {
-      scope.judge1SelectedPlayer = 1
-      var createdAt = new Date();
-      var message = "Judge1 has selected player1 as a winner";
-      scope.appendBattleLog(createdAt, message);
+    it('should have "Judge1 has selected player1 as a winner" at latest item when judge1 select player1 as a winner', function() {
+      scope.judge1SelectedPlayer = 1;
+      scope.judgeSelectWinner(1);
       var logItem = scope.battleLog[scope.battleLog.length - 1];
       expect(logItem.message).toBe("Judge1 has selected player1 as a winner");
+    });
+
+    it('should have "Judge2 has selected player1 as a winner" at latest item when judge2 select player1 as a winner', function() {
+      scope.judge2SelectedPlayer = 1
+      scope.judgeSelectWinner(2);
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Judge2 has selected player1 as a winner");
+    });
+
+    it('should have "Judge3 has selected player1 as a winner" at latest item when judge3 select player1 as a winner', function() {
+      scope.judge3SelectedPlayer = 1
+      scope.judgeSelectWinner(3);
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Judge3 has selected player1 as a winner");
+    });
+
+    it('should have "Judge1 has selected player2 as a winner" at latest item when judge1 select player2 as a winner', function() {
+      scope.judge1SelectedPlayer = 2
+      scope.judgeSelectWinner(1);
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Judge1 has selected player2 as a winner");
+    });
+
+    it('should have "Judge2 has selected player2 as a winner" at latest item when judge2 select player2 as a winner', function() {
+      scope.judge2SelectedPlayer = 2
+      scope.judgeSelectWinner(2);
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Judge2 has selected player2 as a winner");
+    });
+
+    it('should have "Judge3 has selected player2 as a winner" at latest item when judge3 select player2 as a winner', function() {
+      scope.judge3SelectedPlayer = 2
+      scope.judgeSelectWinner(3);
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Judge3 has selected player2 as a winner");
     });
   });
 

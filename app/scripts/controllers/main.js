@@ -99,6 +99,29 @@ angular.module('geekBattleApp')
         $scope.battleLogText += logText;
     };
 
+    $scope.judgeSelectWinner = function(judgeId) {
+        var createdAt = new Date();
+        var judgeName = judgeToString(judgeId);
+        var playerName = '';
+        var message = '';
+
+        if (judgeId == 1) {
+            playerName = playerToString(parseInt($scope.judge1SelectedPlayer));
+            console.log(playerName);
+            message = judgeName + ' has selected ' + playerName + ' as a winner';
+        } else if (judgeId == 2) {
+            playerName = playerToString(parseInt($scope.judge2SelectedPlayer));
+            message = judgeName + ' has selected ' + playerName + ' as a winner';
+        } else if (judgeId == 3) {
+            playerName = playerToString(parseInt($scope.judge3SelectedPlayer));
+            message = judgeName + ' has selected ' + playerName + ' as a winner';
+        } else {
+            message = judgeName + ' has not selected a winner yet';
+        }
+
+        $scope.appendBattleLog(createdAt, message);
+    };
+
     var resetTeams = function() {
     	$scope.teams = [];
     	$scope.teams.push({
@@ -147,6 +170,43 @@ angular.module('geekBattleApp')
  	// 	// }
  	// };
 
+    /*
+     *  Private Function
+    */
 
+    var judgeToString = function(judgeId) {
+        var judgeName = '';
+        switch(judgeId) {
+            case 1:
+                judgeName = 'Judge1';
+                break;
+            case 2:
+                judgeName = 'Judge2';
+                break;
+            case 3:
+                judgeName = 'Judge3';
+                break;
+            default:
+                judgeName = 'Unknown';
+        }
+
+        return judgeName;
+    }
+
+    var playerToString = function(playerId) {
+        var playerName = '';
+        switch(playerId) {
+            case 1:
+                playerName = 'player1';
+                break;
+            case 2:
+                playerName = 'player2';
+                break;
+            default:
+                playerName = 'Unknown';
+        }
+
+        return playerName;
+    }
   });
 
