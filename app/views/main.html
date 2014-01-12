@@ -36,8 +36,14 @@
             </div>
          </div>
           <div class="buttonstate">Start Match</div>
-          <div class="buttonstate">Start Round</div>
-          <div class="buttonstate">End Round</div>
+          <div ng-switch on="isRoundStarted">
+            <div ng-switch-when="false">
+              <button type="button" class="btn btn-success" ng-click="startRound()" >Start Round</button>
+            </div>
+            <div ng-switch-when="true">
+              <button type="button" class="btn btn-danger" ng-click="endRound()">End Round</button>
+            </div>
+         </div>
         </div>
         <br class="clear"/>
         <h3>Score Board</h3>
@@ -66,7 +72,7 @@
         <input type="radio" name="judge2" value="1" id="pokemonRed" ng-model="judge2SelectedPlayer" ng-change="judgeSelectWinner(2)"><label for="pokemonRed"> Player 1</label>
         <input type="radio" name="judge2" value="2" id="pokemonBlue" ng-model="judge2SelectedPlayer" ng-change="judgeSelectWinner(2)"><label for="pokemonBlue"> Player 2</label>
         <img src="images/judge3.jpg">
-        <input type="radio" name="judge3" value="1" id="pokemonRed" ng-model="judge3SelectedPlayer" ng-change="judgeSelectWinner(3)"<label for="pokemonRed"> Player 1</label>
+        <input type="radio" name="judge3" value="1" id="pokemonRed" ng-model="judge3SelectedPlayer" ng-change="judgeSelectWinner(3)"><label for="pokemonRed"> Player 1</label>
         <input type="radio" name="judge3" value="2" id="pokemonBlue" ng-model="judge3SelectedPlayer" ng-change="judgeSelectWinner(3)"><label for="pokemonBlue"> Player 2</label>
     </div>
   </div>

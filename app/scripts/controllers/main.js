@@ -5,21 +5,33 @@ angular.module('geekBattleApp')
   .controller('MainCtrl', function ($scope,JsonReader,$http) {
 
 	$scope.isBattleStarted = false;
+	$scope.isRoundStarted = false;
 
-    $scope.teams = [];
-    $scope.team1List = [];
-    $scope.allTeamsPlayerList = [];
-    $scope.selectedTeam1Member = [];
-    $scope.team1;
-    $scope.selectedTeam2Member = [];
-    $scope.team2;
+	$scope.teams = [];
+	$scope.team1List = [];
+	$scope.allTeamsPlayerList = [];
+	$scope.selectedTeam1Member = [];
+	$scope.team1;
+	$scope.selectedTeam2Member = [];
+	$scope.team2;
 	$scope.defaultImage = 'images/judge.jpg';
-    $scope.battleLog = [];
-
+	$scope.battleLog = [];
+	$scope.roundScoreOfTeam1 = 0;
+	$scope.roundScoreOfTeam2 = 0;
+	$scope.scoreOfTeam1 = 0;
+	$scope.scoreOfTeam2 = 0;
+	$scope.scoreOfTeam3 = 0;
+	
 	$scope.initData = function(){
-
 		$scope.isBattleStarted = false;
+		$scope.isRoundStarted = false;
 		resetTeams();
+		
+		$scope.roundScoreOfTeam1 = 0;
+		$scope.roundScoreOfTeam2 = 0;
+		$scope.scoreOfTeam1 = 0;
+		$scope.scoreOfTeam2 = 0;
+		$scope.scoreOfTeam3 = 0;
 	};
 
 	$scope.startBattle = function(){
@@ -130,6 +142,48 @@ angular.module('geekBattleApp')
 
         $scope.appendBattleLog(createdAt, message);
     };
+		
+	$scope.endRound = function() {
+		if ($scope.judge1SelectedPlayer == '1') {
+			$scope.roundScoreOfTeam1 += 1;
+		} else {
+			$scope.roundScoreOfTeam2 += 1;
+		}
+		
+		if ($scope.judge2SelectedPlayer == '1') {
+			$scope.roundScoreOfTeam1 += 1;
+		} else {
+			$scope.roundScoreOfTeam2 += 1;
+		}
+		
+		if ($scope.judge3SelectedPlayer == '1') {
+			$scope.roundScoreOfTeam1 += 1;
+		} else {
+			$scope.roundScoreOfTeam2 += 1;
+		}
+		
+		var message = '';
+		
+		if (($scope.roundScoreOfTeam1 == 2) && ($scope.roundScoreOfTeam1 > $scope.roundScoreOfTeam2)) {
+			message = 'Team1 is the winner of round';
+		} else if (($scope.roundScoreOfTeam2 == 2) && ($scope.roundScoreOfTeam2 > $scope.roundScoreOfTeam1)) {
+			message = 'Team2 is the winner of round';
+		} else {
+			message = 'Facilitator pressed "End Round" button before all judge select the winner';
+		}
+		
+		$scope.appendBattleLog(new Date(), message);
+		$scope.isRoundStarted = false;
+	};
+	
+	$scope.startRound = function() {
+		$scope.isRoundStarted = true;
+		$scope.roundScoreOfTeam1 = 0;
+		$scope.roundScoreOfTeam2 = 0;
+		$scope.judge1SelectedPlayer = '';
+		$scope.judge2SelectedPlayer = '';
+		$scope.judge3SelectedPlayer = '';
+	}
 
     var resetTeams = function() {
     	$scope.teams = [];

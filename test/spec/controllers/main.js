@@ -95,7 +95,7 @@ describe('Controller: MainCtrl', function () {
 		});
   });
 
-  describe('judge1SelectedPlayer', function() {
+  describe('Judge selecte winner', function() {
     it('should be 1 when judge1 select player1 as a winner', function() {
       scope.judge1SelectedPlayer = 1
       expect(scope.judge1SelectedPlayer).toBe(1);
@@ -106,6 +106,50 @@ describe('Controller: MainCtrl', function () {
       expect(scope.judge1SelectedPlayer).toBe(2);
     });
   });
+	
+	describe('Calculate Round Score', function() {
+	  beforeEach(function() {
+	    scope.roundScoreOfTeam1 = 0;
+			scope.roundScoreOfTeam2 = 0;
+		});
+		
+		it('round score of team1 and team2 should be 0 when battle start', function(){
+			expect(scope.roundScoreOfTeam1).toBe(0);
+			expect(scope.roundScoreOfTeam2).toBe(0);
+		});
+		
+		it('round score of team1 should be 1 when judge1 select player1 as the winner', function() {
+			scope.judge1SelectedPlayer = '1';
+			scope.endRound();
+			expect(scope.roundScoreOfTeam1).toBe(1);
+		});
+		
+		it('round score of team1 should be 2 when judge1 and judge 2 select player1 as the winner', function() {
+			scope.judge1SelectedPlayer = '1';
+			scope.judge2SelectedPlayer = '1';
+			scope.endRound();
+			expect(scope.roundScoreOfTeam1).toBe(2);
+		});
+		
+		it('round score of team2 should be 2 and round score of team1 should be 1 when judge1 and judge3 select player 2 as the winner and judge2 select player1 as the winner', function(){
+			scope.judge1SelectedPlayer = '2';
+			scope.judge3SelectedPlayer = '2';
+			scope.judge2SelectedPlayer = '1';
+			scope.endRound();
+			
+			expect(scope.roundScoreOfTeam1).toBe(1);
+			expect(scope.roundScoreOfTeam2).toBe(2);
+		});
+		
+		it('should append "Team1 is the winner of round" to battle log when roundScoreOfTeam1 is 2 and roundScoreOfTeam2 is 1 and then click "End Round" button', function() {
+			scope.judge1SelectedPlayer = '2';
+			scope.judge3SelectedPlayer = '1';
+			scope.judge2SelectedPlayer = '1';
+			scope.endRound();
+      var logItem = scope.battleLog[scope.battleLog.length - 1];
+      expect(logItem.message).toBe("Team1 is the winner of round");
+		});
+	});
 
   describe('battleLog', function() {
     it('should have "Judge1 has selected player1 as a winner" at latest item when judge1 select player1 as a winner', function() {
