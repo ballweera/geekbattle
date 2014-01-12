@@ -177,6 +177,10 @@ angular.module('geekBattleApp')
 	};
 	
 	$scope.startRound = function() {
+		if (!$scope.isBattleStarted) {
+			return;
+		}
+		
 		$scope.isRoundStarted = true;
 		$scope.roundScoreOfTeam1 = 0;
 		$scope.roundScoreOfTeam2 = 0;
